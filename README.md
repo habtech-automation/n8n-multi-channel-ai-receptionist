@@ -33,20 +33,16 @@ intelligent response — 24/7.
 
 ## Architecture
 
-Telegram Trigger ──▶ Extract Message ──┐
-├──▶ Merge ──▶ Receptionist Agent (OpenRouter)
-Twilio Trigger ───▶ Extract Message ──┘ │
-┌─────────┼──────────┐
-▼ ▼ ▼
-escalate_ search_ capture_lead
-to_human knowledge book_appt
-│ base (Sheets)
-▼
-Channel Router
-┌──────┴──────┐
-▼ ▼
-Send WhatsApp Send Telegram
-Reply Message
+Telegram Trigger ──▶ Extract Message Data1 ──┐
+                                              ├──▶ Merge ──▶ Receptionist Agent ──▶ Channel Router ──▶ (True)  Send WhatsApp Reply
+Twilio Trigger ───▶ Extract Message Data ────┘                    │                                ──▶ (False) Send Telegram Message
+                                                      ┌───────────┼───────────┐
+                                                      ▼           ▼           ▼  
+                                               OpenRouter    Simple       Tools:
+                                               Chat Model    Memory    ┌─ escalate_to_human
+                                                                       ├─ search_knowledge_base
+                                                                       ├─ capture_lead
+                                                                       └─ book_appointment
 ---
 
 ## Agent Tools
