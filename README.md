@@ -31,24 +31,7 @@ intelligent response — 24/7.
 
 ---
 
-## Architecture
-Telegram Trigger
-       │
-       ▼
-Extract Message Data1 ──┐
-                        ▼
-                      Merge ──▶ Receptionist Agent ──▶ Channel Router
-                        ▲              │                      │
-Extract Message Data ───┘              │                 True ──▶ Send WhatsApp Reply
-       ▲                               │                False ──▶ Send Telegram Message
-       │                    ┌──────────┴──────────┐
-Twilio Trigger         OpenRouter            Simple Memory
-                       Chat Model
-                                    Tools:
-                                    - escalate_to_human
-                                    - search_knowledge_base
-                                    - capture_lead
-                                    - book_appointment
+
 
 
 ## Agent Tools
